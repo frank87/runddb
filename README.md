@@ -18,8 +18,10 @@ Test run
 Install
 ----
    $ rebar3 release
+
    $ _build/default/rel/runddb/bin/runddb start
 
+En richt de browser op http://localhost:8080
 
 
 
