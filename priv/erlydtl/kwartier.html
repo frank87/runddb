@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+	<meta http-equiv='Content-Type' content='text/html;charset=utf-8'/>
+	<title>Kwartierstaat {{animal.name}}</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td rowspan="4">
+				{% include "bovine.html" %}
+			</td>
+			<td rowspan="2">
+				{% with animal = animal.vader %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+			<td>
+				{% with animal = animal.vader.vader %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+		</tr>
+		<tr>
+			<td> 
+				{% with animal = animal.vader.moeder %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+		</tr>
+		<tr>
+			<td rowspan="2">
+				{% with animal = animal.moeder %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+			<td>
+				{% with animal = animal.moeder.vader %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{% with animal = animal.moeder.moeder %}
+				{% include "bovine.html" %}
+				{% endwith %}
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
