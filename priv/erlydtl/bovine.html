@@ -1,5 +1,42 @@
-<dl>
-<dd><a href="{{animal.init}}">{{animal.name}}</a></dd>
-<dd>{{animal.geboortedatum|date:"d-m-Y"}}</dd>
-<dd>foknr: {{animal.foknummer}}</dd>
-</dl>
+<table>
+	<tr>
+		<td colspan=2>
+			<a href="{{animal.init}}">{{animal.name}}</a>
+		</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			{{animal.geboortedatum|date:"d-m-Y"}}
+		</td>
+	</tr>
+	{% if animal.foknummer %}
+	<tr>
+		<td>
+			foknr
+		</td>
+		<td>
+			{{animal.foknummer}}
+		</td>
+	</tr>
+	{% endif %}
+	{% if animal.melklijst %}
+	<tr>
+		<td style="vertical-align:top"> 
+			melklijst: 
+		</td>
+		<td> 
+			<table>
+				{% for line in animal.melklijst %}
+				<tr>
+					{% for cell in line %} 
+					<td>
+						{{cell}}
+					</td>
+					{% endfor %}
+				</tr>
+				{% endfor %}
+			</table> 
+		</td>
+	</tr>
+	{% endif %}
+</table>
