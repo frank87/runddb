@@ -25,17 +25,12 @@
 			melklijst: 
 		</td>
 		<td> 
-			<table>
 				{% for line in animal.melklijst %}
-				<tr>
 					{% for cell in line %} 
-					<td>
 						{{cell}}
-					</td>
 					{% endfor %}
-				</tr>
+				</br>
 				{% endfor %}
-			</table> 
 		</td>
 	</tr>
 	{% endif %}
