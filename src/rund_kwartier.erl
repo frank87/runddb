@@ -10,9 +10,9 @@ init(Req0, State) ->
 			%cowboy_req:binding( dept, Req0, <<"2">> )
 		       %),
 	Dept = 3,
-	erlydtl:compile("priv/erlydtl/kwartier.html", kwartier_dtl ),
+	io:format("~p~n", [ erlydtl:compile_dir("priv/erlydtl", dtl ) ] ),
 	Tree = rund_tree:get_tree( { init, Id }, Dept ),
-	{ ok, Out } = kwartier_dtl:render( #{ animal => Tree } ),
+	{ ok, Out } = dtl:kwartier( #{ animal => Tree } ),
 	io:format("~p~n", [Out] ),
 	Req = cowboy_req:reply( 200, 
 				#{<<"content-type">> => <<"text/html">>},

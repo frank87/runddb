@@ -1,37 +1,69 @@
 <table>
-	<tr>
-		<td colspan=2>
-			<a href="{{animal.init}}">{{animal.name}}</a>
-		</td>
-	</tr>
-	<tr>
-		<td colspan=2>
-			{{animal.geboortedatum|date:"d-m-Y"}}
-		</td>
-	</tr>
-	{% if animal.foknummer %}
-	<tr>
-		<td>
-			foknr
-		</td>
-		<td>
-			{{animal.foknummer}}
-		</td>
-	</tr>
-	{% endif %}
-	{% if animal.melklijst %}
-	<tr>
-		<td style="vertical-align:top"> 
-			melklijst: 
-		</td>
-		<td> 
-				{% for line in animal.melklijst %}
-					{% for cell in line %} 
-						{{cell}}
-					{% endfor %}
-				</br>
-				{% endfor %}
-		</td>
-	</tr>
-	{% endif %}
+				<tr>
+								<td rowspan="2"> 
+												<table> 
+																<tr> 
+																				<td colspan=2> 
+																								<a href="{{animal.init}}">{{animal.name}}</a> 
+																				</td> 
+																</tr> 
+																<tr> 
+																				<td colspan=2> 
+																								{{animal.geboortedatum|date:"d-m-Y"}} 
+																				</td> 
+																</tr> 
+																{% if animal.foknummer %} 
+																<tr> 
+																				<td> 
+																								foknr 
+																				</td> 
+																				<td> 
+																								{{animal.foknummer}} 
+																				</td> 
+																</tr> 
+																{% endif %} 
+																{% if animal.melklijst %} 
+																<tr> 
+																				<td style="vertical-align:top"> 
+																								melklijst: 
+																				</td> 
+																				<td> 
+																								{% for line in animal.melklijst %} 
+																								{% for cell in line %} 
+																								{{cell}} 
+																								{% endfor %} 
+																								</br> 
+																								{% endfor %} 
+																				</td> 
+																</tr> 
+																{% endif %} 
+												</table>
+								</td>
+								{% if animal.vader or animal.moeder %}
+								<td>
+												{% if animal.vader %}
+												{% with animal = animal.vader %}
+												{% block vader %}
+												{% include "bovine3.html" %}
+												{% endblock %}
+												{% endwith %}
+												{% else %}
+												Onbekend
+												{% endif %}
+								</td>
+				</tr>
+				</tr>
+								<td>
+												{% if animal.moeder %}
+												{% with animal = animal.moeder %}
+												{% block moeder %}
+												{% include "bovine3.html" %}
+												{% endblock %}
+												{% endwith %}
+												{% else %}
+												Onbekend
+												{% endif %}
+								</td>
+								{% endif %}
+				</tr>
 </table>
