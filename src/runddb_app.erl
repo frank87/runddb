@@ -24,7 +24,10 @@ start_web() ->
 		      {'_', 
 		       [
 			%{"/kwartierstaat/:id[/:dept]", rund_kwartier, [] }
+			{"/js/[...]", cowboy_static, {priv_dir, runddb, "js"}},
+			{"/html/[...]", cowboy_static, {priv_dir, runddb, "html"}},
 			{"/kwartierstaat/:id", rund_kwartier, [] },
+			{"/rund", rund_kwartier, [] },
 			{"/", rund_stierlijst, [] }
 		       ] 
 		      }

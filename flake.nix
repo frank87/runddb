@@ -1,0 +1,43 @@
+{
+  description = "A Rust web server including a NixOS module";
+
+  # Nixpkgs / NixOS version to use.
+  inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
+
+  outputs = { self, nixpkgs }:
+    {
+      # The default package for 'nix build'. This makes sense if the
+      defaultPackage."x86_64-linux" = 
+	with import nixpkgs{ system = "x86_64-linux"; };
+        let
+		 deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };
+	in
+	pkgs.stdenv.mkDerivation{
+		name = "runddb";
+		src = self;
+
+		buildPhase = ''
+			mkdir -p _checkouts
+			${toString (pkgs.lib.mapAttrsToList (k: v: ''
+			cp -R --no-preserve=mode ${v} _checkouts/${k}
+			'') deps)}
+			rebar3 tar
+		'';
+
+		installPhase = ''
+			mkdir -p $out
+			tar -xzvf _build/prod/rel/*/*.tar.gz -C $out/
+		'';
+
+
+		buildInputs = [ erlang rebar3 gnutar ];
+	};
+
+      # A NixOS module.
+      #nixosModules.runddb-web =
+        #{ pkgs, ... }:
+        #{
+        #};
+
+    };
+}

@@ -20,8 +20,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% Get information about Id, for N generations(including Id)
-get_tree( Id, N ) ->
-	gen_server:call( rund_tree, {get_gen, Id, N } ).
+get_tree( Id = { _Type, _Id}, N ) ->
+	gen_server:call( rund_tree, {get_gen, Id, N } );
+get_tree( Id, N ) -> 
+	gen_server:call( rund_tree, {get_gen, rund_util:decode( Id ), N } ).
 
 get_bulls() ->
 	gen_server:call( rund_tree, get_bulls ).
@@ -140,8 +142,11 @@ get_ftree( Id ) ->
 	end.
 
 get_gen( unknown, _ ) -> unknown;
-get_gen( Id, 1 ) ->
-	format_ftree( get_ftree( Id ) );
+get_gen( {_,unknown}, _ ) -> unknown;
+get_gen( Id, 0 ) ->
+	io:format( "~p~n", [Id] ),
+	rund_util:encode( norm_id( Id ) );
+% Oldest in the tree gets the parents
 get_gen( Id, N ) ->
 	case get_ftree( Id ) of
 		Child = #ftree{ father = F, mother = M } ->
