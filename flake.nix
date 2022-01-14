@@ -21,16 +21,16 @@
 			${toString (pkgs.lib.mapAttrsToList (k: v: ''
 			cp -R --no-preserve=mode ${v} _checkouts/${k}
 			'') deps)}
-			rebar3 tar
+			HOME=. rebar3 tar
 		'';
 
 		installPhase = ''
 			mkdir -p $out
-			tar -xzvf _build/prod/rel/*/*.tar.gz -C $out/
+			tar -xzvf _build/default/rel/*/*.tar.gz  -C $out/
 		'';
 
 
-		buildInputs = [ erlang rebar3 gnutar ];
+		buildInputs = [ openssl rebar3 gnutar ];
 	};
 
       # A NixOS module.
