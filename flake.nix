@@ -33,11 +33,9 @@
 		buildInputs = [ openssl rebar3 gnutar ];
 	};
 
-      # A NixOS module.
-      #nixosModules.runddb-web =
-        #{ pkgs, ... }:
-        #{
-        #};
-
+      # A NixOS overlay.
+      overlay = final: prev: {
+	runddb = self.defaultPackage."x86_64-linux";
+      };
     };
 }
