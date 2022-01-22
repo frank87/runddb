@@ -37,7 +37,7 @@
 		overlay = final: prev: {
 			runddb = self.defaultPackage."x86_64-linux";
 
-			config = {
+			#config = {
 				systemd.services.runddb = {
 					description = "Online REST database for cattle";
 
@@ -52,7 +52,7 @@
 						Restart="on-failure";
 					};
 
-				};
+			#	};
 
 			};
 		};
