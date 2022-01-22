@@ -30,8 +30,7 @@ init([]) ->
                  intensity => 0,
                  period => 1},
     ChildSpecs = [ #{ id => rund_tree,
-		      start => { rund_tree, start_link, [] } },
-		   systemd:ready()
+		      start => { rund_tree, start_link, [] } }
 		 ],
     {ok, {SupFlags, ChildSpecs}}.
 
