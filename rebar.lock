@@ -7,7 +7,6 @@
   {git,"https://github.com/ninenines/cowlib",
        {ref,"6deddc7d3360aa0f50eb2375cc0226157185c472"}},
   1},
- {<<"enough">>,{pkg,<<"enough">>,<<"0.1.0">>},1},
  {<<"erlydtl">>,
   {git,"https://github.com/erlydtl/erlydtl.git",
        {ref,"cb6dc127585e4040465e38de0b7ac1d13ea83813"}},
@@ -24,15 +23,10 @@
  {<<"ranch">>,
   {git,"https://github.com/ninenines/ranch",
        {ref,"3190aef88aea04d6dce8545fe9b4574288903f44"}},
-  1},
- {<<"systemd">>,{pkg,<<"systemd">>,<<"0.6.2">>},0}]}.
+  1}]}.
 [
 {pkg_hash,[
- {<<"enough">>, <<"0254710C52D324E2DADDE54CB56FBB80A792C2EB285669B8379EFD0752BF89F0">>},
- {<<"iso8601">>, <<"994AFF5DFE760F14A8C4F2D8C3CF500371BF1A8CF309C3C0CB510401064223E0">>},
- {<<"systemd">>, <<"AAA24F1E3E6CB978C45369768B1ABD766A0DBFF637ED61254CA64797BCEC9963">>}]},
+ {<<"iso8601">>, <<"994AFF5DFE760F14A8C4F2D8C3CF500371BF1A8CF309C3C0CB510401064223E0">>}]},
 {pkg_hash_ext,[
- {<<"enough">>, <<"0460C7ABDA5F5E0EA592B12BC6976B8A5C4B96E42F332059CD396525374BF9A1">>},
- {<<"iso8601">>, <<"BCC7767D691E4D8A26E713F48DA51ABD951BEC4E071AE841F371766F96B46834">>},
- {<<"systemd">>, <<"5062B911800C1AB05157C7BF9A9FBE23DD24C58891C87FD12D2E3ED8FC1708B8">>}]}
+ {<<"iso8601">>, <<"BCC7767D691E4D8A26E713F48DA51ABD951BEC4E071AE841F371766F96B46834">>}]}
 ].
