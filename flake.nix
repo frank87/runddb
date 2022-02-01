@@ -34,8 +34,11 @@
 			};
 
 		# A NixOS overlay.
-		overlay = final: prev: {
-			runddb = self.defaultPackage."x86_64-linux";
+		overlay = 
+			let 
+				runddb = self.defaultPackage."x86_64-linux";
+			in
+			final: prev: {
 
 			#config = {
 				systemd.services.runddb = {
@@ -47,7 +50,7 @@
 						Type="notify";
 						User="runddb";
 
-						ExecStart="${self.runddb}/bin/runddb daemon";
+						ExecStart="${runddb}/bin/runddb daemon";
 						WatchdogSec="10s";
 						Restart="on-failure";
 					};
