@@ -40,7 +40,7 @@
 			in
 			final: prev: {
 
-			#config = {
+			config = {
 				systemd.services.runddb = {
 					description = "Online REST database for cattle";
 
@@ -55,7 +55,7 @@
 						Restart="on-failure";
 					};
 
-			#	};
+				};
 
 			};
 		};

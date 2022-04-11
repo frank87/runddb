@@ -9,7 +9,7 @@
 
 -export([get_tree/2, get_bulls/0 ]).
 
--export([init/1, start_link/0, new/5, test/2 ] ).
+-export([init/1, start_link/0, new/5, test/2, update/2 ] ).
 
 -export([ handle_call/3, handle_cast/2 ] ).
 
@@ -23,10 +23,13 @@
 get_tree( Id = { _Type, _Id}, N ) ->
 	gen_server:call( rund_tree, {get_gen, Id, N } );
 get_tree( Id, N ) -> 
-	gen_server:call( rund_tree, {get_gen, rund_util:decode( Id ), N } ).
+	get_tree( rund_util:decode( Id ), N ).
 
 get_bulls() ->
 	gen_server:call( rund_tree, get_bulls ).
+
+update( Id, Data ) ->
+	gen_server:call( rund_tree, {update, Data} ).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%   Genserver stuff...
