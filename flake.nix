@@ -35,12 +35,9 @@
 
 		# A NixOS overlay.
 		overlay = 
-			let 
-				runddb = self.defaultPackage."x86_64-linux";
-			in
 			final: prev: {
 
-			config = {
+			final.config = {
 				systemd.services.runddb = {
 					description = "Online REST database for cattle";
 

@@ -7,21 +7,11 @@
     rev = "3190aef88aea04d6dce8545fe9b4574288903f44";
     sha256 = "1w04bypljnl4yvvnr58nzvavmfsk3h1h8mvwpz25w8c31jywgdc8";
   };
-  enough = fetchHex {
-    pkg = "enough";
-    version = "0.1.0";
-    sha256 = "sha256-BGDHq9pfXg6lkrErxpdrilxLluQvMyBZzTllJTdL+aE=";
-  };
   cowlib = fetchFromGitHub {
     owner = "ninenines";
     repo = "cowlib";
     rev = "6deddc7d3360aa0f50eb2375cc0226157185c472";
     sha256 = "166vdi2s3nghq1zxcymjirqp9jlpjp73s37f2ydj7cgxnm4k3msn";
-  };
-  systemd = fetchHex {
-    pkg = "systemd";
-    version = "0.6.2";
-    sha256 = "sha256-UGK5EYAMGrBRV8e/mp++I90kxYiRyH/RLS4+2PwXCLg=";
   };
   jsone = fetchFromGitHub {
     owner = "sile";
@@ -45,6 +35,12 @@
     repo = "erlydtl";
     rev = "cb6dc127585e4040465e38de0b7ac1d13ea83813";
     sha256 = "1aygv4c6yps4p5sjqwha8576v14ygf2j9rxnsz7x1vq896j853c8";
+  };
+  erlguten = fetchFromGitHub {
+    owner = "hwatkins";
+    repo = "erlguten";
+    rev = "9a95e2bf3d4d13f764574cd7c7c27403b8a478e5";
+    sha256 = "0rs1isyvv9i13narrjvki8qvalg9ak4wsi94ics0bblqnxcd9swq";
   };
   cowboy = fetchFromGitHub {
     owner = "ninenines";
