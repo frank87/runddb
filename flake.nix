@@ -33,28 +33,27 @@
 				buildInputs = [ openssl rebar3 gnutar ];
 			};
 
-		# A NixOS overlay.
-		overlay = 
-			final: prev: {
+		# A NixOS module.
+		nixosModules.default = { pkgs, ...}: {
 
-			final.config = {
-				systemd.services.runddb = {
-					description = "Online REST database for cattle";
+				config = {
+					systemd.services.runddb = {
+						description = "Online REST database for cattle";
 
-					wantedBy="multi-user.target";
+						wantedBy="multi-user.target";
 
-					serviceConfig = {
-						Type="notify";
-						User="runddb";
+						serviceConfig = {
+							Type="notify";
+							User="runddb";
 
-						ExecStart="${runddb}/bin/runddb daemon";
-						WatchdogSec="10s";
-						Restart="on-failure";
+							ExecStart="${self}/bin/runddb daemon";
+							WatchdogSec="10s";
+							Restart="on-failure";
+						};
+
 					};
 
 				};
-
 			};
-		};
 	};
 }
