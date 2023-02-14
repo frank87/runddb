@@ -5,10 +5,13 @@
 	inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
 
 	outputs = { self, nixpkgs }:
+	let
+		system="x86_64-linux";
+	in
 	{
 		# The default package for 'nix build'. This makes sense if the
-		packages."x86_64-linux".default =
-			with import nixpkgs{ system = "x86_64-linux"; };
+		packages.${system}.default =
+			with import nixpkgs{ inherit system; };
 			let
 				deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };
 			in
