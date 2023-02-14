@@ -7,7 +7,7 @@
 	outputs = { self, nixpkgs }:
 	{
 		# The default package for 'nix build'. This makes sense if the
-		defaultPackage."x86_64-linux" = 
+		packages."x86_64-linux".default =
 			with import nixpkgs{ system = "x86_64-linux"; };
 			let
 				deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };
