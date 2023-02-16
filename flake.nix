@@ -37,7 +37,7 @@
 			};
 
 		# A NixOS module.
-		nixosModules.default = { pkgs, self, ...}: {
+		nixosModules.default = { pkgs, self }: {
 
 				config = {
 					systemd.services.runddb = {
@@ -49,7 +49,7 @@
 							Type="notify";
 							User="runddb";
 
-							ExecStart="${self}/bin/runddb daemon";
+							ExecStart="${runddb}/bin/runddb daemon";
 							WatchdogSec="10s";
 							Restart="on-failure";
 						};
