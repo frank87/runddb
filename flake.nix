@@ -49,7 +49,7 @@
 							Type="notify";
 							User="runddb";
 
-							ExecStart="${runddb}/bin/runddb daemon";
+							ExecStart="${self}/bin/runddb daemon";
 							WatchdogSec="10s";
 							Restart="on-failure";
 						};
