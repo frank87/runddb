@@ -37,7 +37,7 @@
 			};
 
 		# A NixOS module.
-		nixosModules.default = { pkgs, self }: {
+		nixosModules.default = ( { pkgs, self }: {
 
 				config = {
 					systemd.services.runddb = {
@@ -57,6 +57,6 @@
 					};
 
 				};
-			};
+			} );
 	};
 }
