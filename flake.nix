@@ -10,7 +10,7 @@
 	in
 	{
 		# The default package for 'nix build'. This makes sense if the
-		packages.${system}.default =
+		packages.${system}.defaultPackage =
 			with import nixpkgs{ inherit system; };
 			let
 				deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };
@@ -35,9 +35,11 @@
 
 				buildInputs = [ openssl rebar3 gnutar ];
 			};
+	} //
+	{
 
 		# A NixOS module.
-		nixosModules.default = ( { pkgs, self }: {
+		nixosModules.default = ( { config, pkgs, self }: {
 
 				config = {
 					systemd.services.runddb = {
@@ -49,13 +51,12 @@
 							Type="notify";
 							User="runddb";
 
-							ExecStart="${self}/bin/runddb daemon";
+							ExecStart="${self.packages."${pkgs.system}".default}/bin/runddb daemon";
 							WatchdogSec="10s";
 							Restart="on-failure";
 						};
 
 					};
-
 				};
 			} );
 	};
