@@ -2,15 +2,13 @@
 	description = "A Rust web server including a NixOS module";
 
 	# Nixpkgs / NixOS version to use.
-	inputs.nixpkgs.url = "nixpkgs/nixos-21.05";
+	inputs.nixpkgs.url = "nixpkgs/nixos-23.05";
 
 	outputs = { self, nixpkgs }:
-	let
+	rec {
 		system="x86_64-linux";
-	in
-	{
 		# The default package for 'nix build'. This makes sense if the
-		packages.${system}.defaultPackage =
+		packages.${system}.default =
 			with import nixpkgs{ inherit system; };
 			let
 				deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };

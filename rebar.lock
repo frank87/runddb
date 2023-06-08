@@ -7,10 +7,7 @@
   {git,"https://github.com/ninenines/cowlib",
        {ref,"6deddc7d3360aa0f50eb2375cc0226157185c472"}},
   1},
- {<<"erlguten">>,
-  {git,"https://github.com/hwatkins/erlguten.git",
-       {ref,"9a95e2bf3d4d13f764574cd7c7c27403b8a478e5"}},
-  0},
+ {<<"erlguten">>,{pkg,<<"erlguten">>,<<"1.0.0">>},0},
  {<<"erlydtl">>,
   {git,"https://github.com/erlydtl/erlydtl.git",
        {ref,"cb6dc127585e4040465e38de0b7ac1d13ea83813"}},
@@ -30,7 +27,9 @@
   1}]}.
 [
 {pkg_hash,[
+ {<<"erlguten">>, <<"8298A8D81A192438877BA302FF1ADF6ED9EFE48D995AEADB58434C5C6C8815C0">>},
  {<<"iso8601">>, <<"994AFF5DFE760F14A8C4F2D8C3CF500371BF1A8CF309C3C0CB510401064223E0">>}]},
 {pkg_hash_ext,[
+ {<<"erlguten">>, <<"3DC17D6B392CD2B5C0990C401F4762910AD969B1FE151351A7BA089E873CCE4D">>},
  {<<"iso8601">>, <<"BCC7767D691E4D8A26E713F48DA51ABD951BEC4E071AE841F371766F96B46834">>}]}
 ].

@@ -36,11 +36,10 @@
     rev = "cb6dc127585e4040465e38de0b7ac1d13ea83813";
     sha256 = "1aygv4c6yps4p5sjqwha8576v14ygf2j9rxnsz7x1vq896j853c8";
   };
-  erlguten = fetchFromGitHub {
-    owner = "hwatkins";
-    repo = "erlguten";
-    rev = "9a95e2bf3d4d13f764574cd7c7c27403b8a478e5";
-    sha256 = "0rs1isyvv9i13narrjvki8qvalg9ak4wsi94ics0bblqnxcd9swq";
+  erlguten = fetchHex {
+    pkg = "erlguten";
+    version = "1.0.0";
+    sha256 = "sha256-PcF9azks0rXAmQxAH0dikQrZabH+FRNRp7oInoc8zk0=";
   };
   cowboy = fetchFromGitHub {
     owner = "ninenines";
