@@ -47,7 +47,7 @@
 							Type="notify";
 							User="runddb";
 
-							ExecStart="${self.packages."${nixpkgs.system}".default}/bin/runddb daemon";
+							ExecStart="${self.packages."${system}".default}/bin/runddb daemon";
 							WatchdogSec="10s";
 							Restart="on-failure";
 						};
