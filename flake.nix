@@ -33,8 +33,6 @@
 
 				buildInputs = [ openssl rebar3 gnutar ];
 			};
-	} //
-	{
 
 		# A NixOS module.
 		nixosModules.default = { config, ... }: {
