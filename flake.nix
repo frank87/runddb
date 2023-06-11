@@ -37,25 +37,25 @@
 	{
 
 		# A NixOS module.
-		nixosModules.default = ( { config, pkgs, self }: {
+		nixosModules.default = { ... }: {
 
-				config = {
-					systemd.services.runddb = {
-						description = "Online REST database for cattle";
+				#config = {
+					#systemd.services.runddb = {
+						#description = "Online REST database for cattle";
 
-						wantedBy="multi-user.target";
+						#wantedBy="multi-user.target";
 
-						serviceConfig = {
-							Type="notify";
-							User="runddb";
+						#serviceConfig = {
+							#Type="notify";
+							#User="runddb";
 
-							ExecStart="${self.packages."${pkgs.system}".default}/bin/runddb daemon";
-							WatchdogSec="10s";
-							Restart="on-failure";
-						};
+							#ExecStart="${self.packages."${nixpkgs.system}".default}/bin/runddb daemon";
+							#WatchdogSec="10s";
+							#Restart="on-failure";
+						#};
 
-					};
-				};
-			} );
+					#};
+				#};
+			};
 	};
 }
