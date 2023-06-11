@@ -38,10 +38,10 @@
 		nixosModules.default = { config, ... }: {
 
 				config = {
-					systemd.services.runddb = {
+					systemd.services."runddb" = {
 						description = "Online REST database for cattle";
 
-						wantedBy="multi-user.target";
+						wantedBy= [ "multi-user.target" ];
 
 						serviceConfig = {
 							Type="notify";

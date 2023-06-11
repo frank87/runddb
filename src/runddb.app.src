@@ -1,19 +1,20 @@
 {application, runddb,
  [{description, "Runder administratie"},
   {vsn, "0.1.0"},
-  {registered, []},
+  {registered, [rund_tree]},
   {mod, {runddb_app, []}},
   {applications,
    [kernel,
     stdlib,
+    sasl,
     cowboy,
     html_parser,
     erlydtl,
-    erlguten
+    erlguten,
+    jsone
    ]},
   {env,[]},
   {modules, []},
-
   {licenses, ["Apache 2.0"]},
   {links, []}
  ]}.
