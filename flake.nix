@@ -7,7 +7,6 @@
 	outputs = { self, nixpkgs }:
 	rec {
 		system="x86_64-linux";
-		# The default package for 'nix build'. This makes sense if the
 		packages.${system}.default =
 			with import nixpkgs{ inherit system; };
 			let
@@ -35,9 +34,9 @@
 			};
 
 		# A NixOS module.
-		nixosModules.default = { config, ... }: {
-
+		nixosModule = { config, pkgs, ... }: {
 				config = {
+					system.nixos.tags = [ "zotonic" ];
 					systemd.services."runddb" = {
 						description = "Online REST database for cattle";
 
