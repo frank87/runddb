@@ -1,0 +1,4 @@
+[ 
+ { mnesia, [ { dir, ${MNESIA_DIR:-"mnesia" } } ] },
+ { root, "." }
+].
