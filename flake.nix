@@ -7,7 +7,9 @@
 	outputs = { self, nixpkgs }:
 	rec {
 		system="x86_64-linux";
-		packages.${system}.default =
+		packages.${system}.default = runddb;
+
+		runddb =
 			with import nixpkgs{ inherit system; };
 			let
 				deps = import ./rebar-deps.nix { inherit (pkgs) fetchHex fetchFromGitHub; };
@@ -26,7 +28,28 @@
 
 				installPhase = ''
 				mkdir -p $out
-				tar -xzvf _build/default/rel/*/*.tar.gz  -C $out/
+				tarfile=_build/default/rel/*/*.tar.gz 
+				tar -xzf $tarfile -C $out/
+
+				set -x
+				mkdir pack
+				cd pack
+				for dir in $( cd $out; find * -type d )
+				do
+					mkdir -p $dir
+				done
+				for file in $( cd $out; find * -type f )
+				do
+					ln -s $out/$file $file
+				done
+				rm bin/runddb
+				cp -f $out/bin/runddb bin
+				tar czvf $out/runddb-0.0.1.tar.gz *
+				set +x
+				echo "#!${pkgs.stdenv.shell}" > $out/depends.sh
+				echo "${pkgs.gawk}/bin/awk" >> $out/depends.sh
+				chmod a+x $out/depends.sh
+
 				'';
 
 
@@ -36,19 +59,33 @@
 		# A NixOS module.
 		nixosModule = { config, pkgs, ... }: {
 				config = {
-					system.nixos.tags = [ "zotonic" ];
+					system.nixos.tags = [ "runddb" ];
+					
+					users.users.runddb = { 
+						isNormalUser = true; 
+					};
+
+
 					systemd.services."runddb" = {
 						description = "Online REST database for cattle";
 
 						wantedBy= [ "multi-user.target" ];
 
+						path = with pkgs;[ gnutar runddb gzip gawk ];
+
+						script = ''
+								cd
+								tar xzf ${runddb}/runddb-0.0.1.tar.gz
+								bin/runddb  foreground
+							'';
+
 						serviceConfig = {
-							Type="notify";
+							Type="simple";
 							User="runddb";
 
-							ExecStart="${self.packages."${system}".default}/bin/runddb daemon";
 							WatchdogSec="10s";
 							Restart="on-failure";
+							runtimeDirectory = runddb;
 						};
 
 					};
